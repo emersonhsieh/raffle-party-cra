@@ -1,9 +1,15 @@
+import React from "react";
+import { ethers } from "ethers";
+
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 import Header from "../components/Header";
 import CreateRaffleForm from "../components/CreateRaffleForm";
+
+import { RaffleParty__factory } from "../typechain";
+import { RAFFLE_ADDRESS, NETWORK_PROVIDER } from "../constants/Constants";
 
 export default function Home() {
   async function runQuery(
@@ -15,7 +21,18 @@ export default function Home() {
     ticketPrice: number,
     minTickets: number
   ) {
-    // TODO: contract
+    // Create raffle!
+    const provider = ethers.getDefaultProvider(NETWORK_PROVIDER);
+    const raffle = RaffleParty__factory.connect(RAFFLE_ADDRESS, provider);
+    await raffle.createRaffle(
+      prizeToken,
+      tokenId,
+      paymentToken,
+      startTimestamp.toISOString(),
+      endTimestamp.toISOString(),
+      ticketPrice,
+      minTickets
+    );
     return null;
   }
   return (
