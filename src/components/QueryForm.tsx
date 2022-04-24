@@ -54,6 +54,7 @@ export default function QueryForm(props: QueryFormProps) {
           <Button variant="primary" size="sm" onClick={submitForm}>
             Buy with $TOKEN
           </Button>
+          &nbsp; &nbsp;
           <Button variant="info" size="sm" onClick={submitFormEth}>
             Buy with ETH
           </Button>

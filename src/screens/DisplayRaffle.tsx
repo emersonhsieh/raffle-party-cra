@@ -34,9 +34,13 @@ export default function Home() {
     raffleId: number,
     prizeIndex: number,
     ticketPurchaseIndex: number
-  ) {}
+  ) {
+    // claim prize if the user won
+  }
 
-  async function claimSales(account: string, raffleId: number) {}
+  async function claimSales(account: string, raffleId: number) {
+    // claim sales if the user has any
+  }
 
   return (
     <>
