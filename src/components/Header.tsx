@@ -30,7 +30,7 @@ export default function Header(props: HeaderProps) {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/list-token">List ERC-721 Token</Nav.Link>
+            <Nav.Link href="/list-token">Create Listing</Nav.Link>
             <Nav.Link href="/add-to-pool">Add to Pool</Nav.Link>
           </Nav>
           <Nav>
