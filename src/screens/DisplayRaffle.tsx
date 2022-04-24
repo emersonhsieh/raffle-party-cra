@@ -4,6 +4,7 @@ import { useEthers } from "@usedapp/core";
 import { useSearchParams } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -92,23 +93,46 @@ export default function Home() {
         <Row>
           <Col md={12} style={{ marginTop: 36 }}>
             <h3>Raffle #{raffleId}</h3>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}>
+            <Card className="mt-4" style={{ width: "18rem" }}>
+              <Card.Img
+                variant="top"
+                src="https://amsterdam.ethglobal.com/img/windmill.svg"
+              />
+              <Card.Body>
+                <Card.Title>Windmill #123</Card.Title>
+                <Card.Text>This is a windmill blade.</Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={4}>
+            <p className="lead mt-4">Purchase Tickets</p>
             <QueryForm buyTicket={buyTicket} buyTicketEth={buyTicketEth} />
-            <p className="lead">Claim Prize</p>
+          </Col>
+          <Col md={4}>
+            <p className="lead mt-4">Claim Prize</p>
             <Button
-              variant="primary"
+              variant="danger"
               size="sm"
               onClick={() => {
                 claimPrize(account, raffleId);
               }}
-            />
-            <p className="lead">Claim Sales</p>
+            >
+              Claim Prize
+            </Button>
+            <p className="lead mt-4">Claim Sales</p>
             <Button
-              variant="primary"
+              variant="danger"
               size="sm"
               onClick={() => {
                 claimSales(account, raffleId);
               }}
-            />
+            >
+              Claim Sales
+            </Button>
           </Col>
         </Row>
       </Container>

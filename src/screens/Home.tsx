@@ -29,16 +29,18 @@ export default function Home() {
       {/* List all raffles */}
       <Container>
         <Row>
-          <Col md={3} style={{ marginTop: 36 }}>
+          <Col md={3}>
             <Card style={{ width: "18rem" }}>
               <Card.Img
                 variant="top"
                 src="https://amsterdam.ethglobal.com/img/windmill.svg"
               />
               <Card.Body>
-                <Card.Title>NFT for raffle</Card.Title>
-                <Card.Text>ongoing raffle.</Card.Text>
-                <Button variant="primary">Raffle</Button>
+                <Card.Title>Windmill #123</Card.Title>
+                <Card.Text>This is a windmill blade.</Card.Text>
+                <a href="/raffle?id=123">
+                  <Button variant="primary">Raffle</Button>
+                </a>
               </Card.Body>
             </Card>
           </Col>

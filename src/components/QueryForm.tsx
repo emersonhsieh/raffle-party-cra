@@ -45,17 +45,17 @@ export default function QueryForm(props: QueryFormProps) {
             {/* <Form.Label>Query</Form.Label> */}
             <Form.Control
               type="number"
-              placeholder="Query"
+              placeholder="no. of tickets to purchase"
               onChange={handleChangeTitle}
               required
             />
           </Form.Group>
           <br />
-          <Button variant="primary" size="sm" onClick={submitForm}>
+          <Button variant="dark" size="sm" onClick={submitForm}>
             Buy with $TOKEN
           </Button>
           &nbsp; &nbsp;
-          <Button variant="info" size="sm" onClick={submitFormEth}>
+          <Button variant="secondary" size="sm" onClick={submitFormEth}>
             Buy with ETH
           </Button>
         </Form>
