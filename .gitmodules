@@ -1,0 +1,3 @@
+[submodule "raffle-party-contract"]
+	path = raffle-party-contract
+	url = https://github.com/Boffee/raffle-party-contract.git
