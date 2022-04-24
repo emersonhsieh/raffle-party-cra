@@ -36,9 +36,9 @@ export default function Home() {
                 src="https://amsterdam.ethglobal.com/img/windmill.svg"
               />
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>Card Content.</Card.Text>
-                <Button variant="primary">Raffle page</Button>
+                <Card.Title>NFT for raffle</Card.Title>
+                <Card.Text>ongoing raffle.</Card.Text>
+                <Button variant="primary">Raffle</Button>
               </Card.Body>
             </Card>
           </Col>
