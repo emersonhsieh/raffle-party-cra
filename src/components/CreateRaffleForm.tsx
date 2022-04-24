@@ -13,7 +13,9 @@ interface CreateRaffleFormProps {
     startTimestamp: Date,
     endTimestamp: Date,
     ticketPrice: number,
-    minTickets: number
+    minTickets: number,
+    partyPrizeToken: string,
+    weight: number
   ) => any;
 }
 
@@ -29,6 +31,10 @@ export default function CreateRaffleForm(props: CreateRaffleFormProps) {
   const [endTimestamp, setEndTimestamp] = useState(new Date());
   const [ticketPrice, setTicketPrice] = useState(1);
   const [minTickets, setMinTickets] = useState(1);
+  const [partyPrizeToken, setPartyPrizeToken] = useState(
+    ethers.constants.AddressZero
+  );
+  const [weight, setWeight] = useState(1);
 
   const handleChangePrizeToken = (e: React.ChangeEvent<HTMLElement>) => {
     setPrizeToken((e.target as HTMLInputElement).value);
@@ -85,6 +91,12 @@ export default function CreateRaffleForm(props: CreateRaffleFormProps) {
   const handleChangeMinTickets = (e: React.ChangeEvent<HTMLElement>) => {
     setMinTickets(parseInt((e.target as HTMLInputElement).value));
   };
+  const handleChangePartyPrizeToken = (e: React.ChangeEvent<HTMLElement>) => {
+    setPartyPrizeToken((e.target as HTMLInputElement).value);
+  };
+  const handleChangeWeight = (e: React.ChangeEvent<HTMLElement>) => {
+    setWeight(parseInt((e.target as HTMLInputElement).value));
+  };
 
   const submitForm = async () => {
     setLoading(true);
@@ -95,7 +107,9 @@ export default function CreateRaffleForm(props: CreateRaffleFormProps) {
       startTimestamp,
       endTimestamp,
       ticketPrice,
-      minTickets
+      minTickets,
+      partyPrizeToken,
+      weight
     );
     setLoading(false);
     console.log("loading...");
@@ -192,6 +206,22 @@ export default function CreateRaffleForm(props: CreateRaffleFormProps) {
               type="number"
               placeholder="1"
               onChange={handleChangeMinTickets}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Pool Prize Token Address (ERC-721)</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="1"
+              onChange={handleChangePartyPrizeToken}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Pool Prize Token Weight (basis points)</Form.Label>
+            <Form.Control
+              type="number"
+              placeholder="1"
+              onChange={handleChangeWeight}
             />
           </Form.Group>
           <br />

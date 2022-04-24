@@ -19,7 +19,9 @@ export default function Home() {
     startTimestamp: Date,
     endTimestamp: Date,
     ticketPrice: number,
-    minTickets: number
+    minTickets: number,
+    partyPrizeToken: string,
+    weight: number
   ) {
     // Create raffle!
     const provider = ethers.getDefaultProvider(NETWORK_PROVIDER);
@@ -31,7 +33,9 @@ export default function Home() {
       startTimestamp.toISOString(),
       endTimestamp.toISOString(),
       ticketPrice,
-      minTickets
+      minTickets,
+      [partyPrizeToken],
+      [weight]
     );
   }
   return (

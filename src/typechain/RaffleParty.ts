@@ -50,7 +50,7 @@ export interface RafflePartyInterface extends utils.Interface {
     "cancelRaffle(uint256)": FunctionFragment;
     "claimPrize(address,uint256,uint256,uint256)": FunctionFragment;
     "claimSales(address,uint256)": FunctionFragment;
-    "createRaffle(address,uint96,address,uint48,uint48,uint256,uint96)": FunctionFragment;
+    "createRaffle(address,uint96,address,uint48,uint48,uint256,uint96,address[],uint64[])": FunctionFragment;
     "getAccountTokenClaimAmount(address,uint256)": FunctionFragment;
     "getClaimableAmount(uint256)": FunctionFragment;
     "getMinimumSales(uint256)": FunctionFragment;
@@ -160,7 +160,9 @@ export interface RafflePartyInterface extends utils.Interface {
       BigNumberish,
       BigNumberish,
       BigNumberish,
-      BigNumberish
+      BigNumberish,
+      string[],
+      BigNumberish[]
     ]
   ): string;
   encodeFunctionData(
@@ -478,6 +480,8 @@ export interface RaffleParty extends BaseContract {
       endTimestamp: BigNumberish,
       ticketPrice: BigNumberish,
       minTickets: BigNumberish,
+      poolPrizeTokens: string[],
+      poolPrizeTokenWeights: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -694,6 +698,8 @@ export interface RaffleParty extends BaseContract {
     endTimestamp: BigNumberish,
     ticketPrice: BigNumberish,
     minTickets: BigNumberish,
+    poolPrizeTokens: string[],
+    poolPrizeTokenWeights: BigNumberish[],
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -904,6 +910,8 @@ export interface RaffleParty extends BaseContract {
       endTimestamp: BigNumberish,
       ticketPrice: BigNumberish,
       minTickets: BigNumberish,
+      poolPrizeTokens: string[],
+      poolPrizeTokenWeights: BigNumberish[],
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1126,6 +1134,8 @@ export interface RaffleParty extends BaseContract {
       endTimestamp: BigNumberish,
       ticketPrice: BigNumberish,
       minTickets: BigNumberish,
+      poolPrizeTokens: string[],
+      poolPrizeTokenWeights: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -1304,6 +1314,8 @@ export interface RaffleParty extends BaseContract {
       endTimestamp: BigNumberish,
       ticketPrice: BigNumberish,
       minTickets: BigNumberish,
+      poolPrizeTokens: string[],
+      poolPrizeTokenWeights: BigNumberish[],
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
