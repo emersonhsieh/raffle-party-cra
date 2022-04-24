@@ -35,7 +35,7 @@ export default function Home() {
     const raffle = RaffleParty__factory.connect(RAFFLE_ADDRESS, provider);
 
     // buy ticket using raffleId
-    raffle.buyTicket(raffleId, ticketCount);
+    raffle.buyTickets(raffleId, ticketCount);
   }
 
   function buyTicketEth(ticketCount: number) {
@@ -43,7 +43,7 @@ export default function Home() {
     const raffle = RaffleParty__factory.connect(RAFFLE_ADDRESS, provider);
 
     // buy ticket eth
-    raffle.buyTicketEth(raffleId, ticketCount);
+    raffle.buyTicketsEth(raffleId, ticketCount);
   }
 
   function claimPrize(to: string, raffleId: number) {
@@ -57,7 +57,12 @@ export default function Home() {
         if (winner !== account) {
           continue;
         }
-        await raffle.claimPrize(to, raffleId, winner, i);
+        const winnerTicketId = await raffle.getWinnerTicketId(raffleId, i);
+        const ticketPurchaseIndex = await raffle.getTicketPurchaseIndex(
+          raffleId,
+          winnerTicketId
+        );
+        await raffle.claimPrize(winner, raffleId, i, ticketPurchaseIndex);
       }
     }
     _claimPrize();

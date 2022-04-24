@@ -45,8 +45,8 @@ export interface RafflePartyInterface extends utils.Interface {
     "addPoolPrize(uint256,address,uint96)": FunctionFragment;
     "baseRoyalty()": FunctionFragment;
     "blockNumberToIndex(address,uint256)": FunctionFragment;
-    "buyTicket(uint256,uint96)": FunctionFragment;
-    "buyTicketEth(uint256,uint96)": FunctionFragment;
+    "buyTickets(uint256,uint96)": FunctionFragment;
+    "buyTicketsEth(uint256,uint96)": FunctionFragment;
     "cancelRaffle(uint256)": FunctionFragment;
     "claimPrize(address,uint256,uint256,uint256)": FunctionFragment;
     "claimSales(address,uint256)": FunctionFragment;
@@ -59,6 +59,7 @@ export interface RafflePartyInterface extends utils.Interface {
     "getTicketPurchaseIndex(uint256,uint256)": FunctionFragment;
     "getTotalSales(uint256)": FunctionFragment;
     "getWinner(uint256,uint256)": FunctionFragment;
+    "getWinnerTicketId(uint256,uint256)": FunctionFragment;
     "initializeSeed(uint256)": FunctionFragment;
     "overflowRoyalty()": FunctionFragment;
     "owner()": FunctionFragment;
@@ -82,8 +83,8 @@ export interface RafflePartyInterface extends utils.Interface {
       | "addPoolPrize"
       | "baseRoyalty"
       | "blockNumberToIndex"
-      | "buyTicket"
-      | "buyTicketEth"
+      | "buyTickets"
+      | "buyTicketsEth"
       | "cancelRaffle"
       | "claimPrize"
       | "claimSales"
@@ -96,6 +97,7 @@ export interface RafflePartyInterface extends utils.Interface {
       | "getTicketPurchaseIndex"
       | "getTotalSales"
       | "getWinner"
+      | "getWinnerTicketId"
       | "initializeSeed"
       | "overflowRoyalty"
       | "owner"
@@ -130,11 +132,11 @@ export interface RafflePartyInterface extends utils.Interface {
     values: [string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyTicket",
+    functionFragment: "buyTickets",
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "buyTicketEth",
+    functionFragment: "buyTicketsEth",
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
@@ -191,6 +193,10 @@ export interface RafflePartyInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "getWinner",
+    values: [BigNumberish, BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "getWinnerTicketId",
     values: [BigNumberish, BigNumberish]
   ): string;
   encodeFunctionData(
@@ -267,9 +273,9 @@ export interface RafflePartyInterface extends utils.Interface {
     functionFragment: "blockNumberToIndex",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "buyTicket", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "buyTickets", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "buyTicketEth",
+    functionFragment: "buyTicketsEth",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -311,6 +317,10 @@ export interface RafflePartyInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "getWinner", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "getWinnerTicketId",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "initializeSeed",
     data: BytesLike
@@ -429,13 +439,13 @@ export interface RaffleParty extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    buyTicket(
+    buyTickets(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
-    buyTicketEth(
+    buyTicketsEth(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -518,6 +528,12 @@ export interface RaffleParty extends BaseContract {
       prizeIndex: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string] & { winner: string }>;
+
+    getWinnerTicketId(
+      raffleId: BigNumberish,
+      prizeIndex: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber] & { ticketId: BigNumber }>;
 
     initializeSeed(
       raffleId: BigNumberish,
@@ -639,13 +655,13 @@ export interface RaffleParty extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  buyTicket(
+  buyTickets(
     raffleId: BigNumberish,
     ticketCount: BigNumberish,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
-  buyTicketEth(
+  buyTicketsEth(
     raffleId: BigNumberish,
     ticketCount: BigNumberish,
     overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -724,6 +740,12 @@ export interface RaffleParty extends BaseContract {
     prizeIndex: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  getWinnerTicketId(
+    raffleId: BigNumberish,
+    prizeIndex: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   initializeSeed(
     raffleId: BigNumberish,
@@ -843,13 +865,13 @@ export interface RaffleParty extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    buyTicket(
+    buyTickets(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    buyTicketEth(
+    buyTicketsEth(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: CallOverrides
@@ -928,6 +950,12 @@ export interface RaffleParty extends BaseContract {
       prizeIndex: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    getWinnerTicketId(
+      raffleId: BigNumberish,
+      prizeIndex: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     initializeSeed(
       raffleId: BigNumberish,
@@ -1059,13 +1087,13 @@ export interface RaffleParty extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    buyTicket(
+    buyTickets(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
-    buyTicketEth(
+    buyTicketsEth(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -1140,6 +1168,12 @@ export interface RaffleParty extends BaseContract {
     ): Promise<BigNumber>;
 
     getWinner(
+      raffleId: BigNumberish,
+      prizeIndex: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    getWinnerTicketId(
       raffleId: BigNumberish,
       prizeIndex: BigNumberish,
       overrides?: CallOverrides
@@ -1231,13 +1265,13 @@ export interface RaffleParty extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    buyTicket(
+    buyTickets(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
-    buyTicketEth(
+    buyTicketsEth(
       raffleId: BigNumberish,
       ticketCount: BigNumberish,
       overrides?: PayableOverrides & { from?: string | Promise<string> }
@@ -1312,6 +1346,12 @@ export interface RaffleParty extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     getWinner(
+      raffleId: BigNumberish,
+      prizeIndex: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    getWinnerTicketId(
       raffleId: BigNumberish,
       prizeIndex: BigNumberish,
       overrides?: CallOverrides

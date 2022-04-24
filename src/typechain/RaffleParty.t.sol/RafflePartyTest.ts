@@ -28,26 +28,44 @@ import type {
 export interface RafflePartyTestInterface extends utils.Interface {
   functions: {
     "IS_TEST()": FunctionFragment;
-    "createAndStartRaffle()": FunctionFragment;
+    "createDummyRaffle()": FunctionFragment;
+    "createDummyRaffleEth()": FunctionFragment;
     "failed()": FunctionFragment;
     "mintTokens()": FunctionFragment;
     "setUp()": FunctionFragment;
+    "testBuyTickets()": FunctionFragment;
+    "testBuyTicketsEth()": FunctionFragment;
+    "testClaimPrize()": FunctionFragment;
     "testCreateRaffle()": FunctionFragment;
+    "testFailInitializeSeed1()": FunctionFragment;
+    "testFailInitializeSeed2()": FunctionFragment;
+    "testInitializeSeed()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
       | "IS_TEST"
-      | "createAndStartRaffle"
+      | "createDummyRaffle"
+      | "createDummyRaffleEth"
       | "failed"
       | "mintTokens"
       | "setUp"
+      | "testBuyTickets"
+      | "testBuyTicketsEth"
+      | "testClaimPrize"
       | "testCreateRaffle"
+      | "testFailInitializeSeed1"
+      | "testFailInitializeSeed2"
+      | "testInitializeSeed"
   ): FunctionFragment;
 
   encodeFunctionData(functionFragment: "IS_TEST", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "createAndStartRaffle",
+    functionFragment: "createDummyRaffle",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "createDummyRaffleEth",
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "failed", values?: undefined): string;
@@ -57,20 +75,72 @@ export interface RafflePartyTestInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "setUp", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "testBuyTickets",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testBuyTicketsEth",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testClaimPrize",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "testCreateRaffle",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testFailInitializeSeed1",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testFailInitializeSeed2",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
+    functionFragment: "testInitializeSeed",
     values?: undefined
   ): string;
 
   decodeFunctionResult(functionFragment: "IS_TEST", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "createAndStartRaffle",
+    functionFragment: "createDummyRaffle",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "createDummyRaffleEth",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "failed", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mintTokens", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setUp", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "testBuyTickets",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testBuyTicketsEth",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testClaimPrize",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "testCreateRaffle",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testFailInitializeSeed1",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testFailInitializeSeed2",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "testInitializeSeed",
     data: BytesLike
   ): Result;
 
@@ -291,7 +361,11 @@ export interface RafflePartyTest extends BaseContract {
   functions: {
     IS_TEST(overrides?: CallOverrides): Promise<[boolean]>;
 
-    createAndStartRaffle(
+    createDummyRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    createDummyRaffleEth(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -307,14 +381,42 @@ export interface RafflePartyTest extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    testBuyTickets(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    testBuyTicketsEth(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    testClaimPrize(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
     testCreateRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    testFailInitializeSeed1(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    testFailInitializeSeed2(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
+
+    testInitializeSeed(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
 
   IS_TEST(overrides?: CallOverrides): Promise<boolean>;
 
-  createAndStartRaffle(
+  createDummyRaffle(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  createDummyRaffleEth(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -330,14 +432,40 @@ export interface RafflePartyTest extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  testBuyTickets(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  testBuyTicketsEth(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  testClaimPrize(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
   testCreateRaffle(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  testFailInitializeSeed1(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  testFailInitializeSeed2(
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
+
+  testInitializeSeed(
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
   callStatic: {
     IS_TEST(overrides?: CallOverrides): Promise<boolean>;
 
-    createAndStartRaffle(overrides?: CallOverrides): Promise<void>;
+    createDummyRaffle(overrides?: CallOverrides): Promise<BigNumber>;
+
+    createDummyRaffleEth(overrides?: CallOverrides): Promise<BigNumber>;
 
     failed(overrides?: CallOverrides): Promise<boolean>;
 
@@ -345,7 +473,19 @@ export interface RafflePartyTest extends BaseContract {
 
     setUp(overrides?: CallOverrides): Promise<void>;
 
+    testBuyTickets(overrides?: CallOverrides): Promise<void>;
+
+    testBuyTicketsEth(overrides?: CallOverrides): Promise<void>;
+
+    testClaimPrize(overrides?: CallOverrides): Promise<void>;
+
     testCreateRaffle(overrides?: CallOverrides): Promise<void>;
+
+    testFailInitializeSeed1(overrides?: CallOverrides): Promise<void>;
+
+    testFailInitializeSeed2(overrides?: CallOverrides): Promise<void>;
+
+    testInitializeSeed(overrides?: CallOverrides): Promise<void>;
   };
 
   filters: {
@@ -435,7 +575,11 @@ export interface RafflePartyTest extends BaseContract {
   estimateGas: {
     IS_TEST(overrides?: CallOverrides): Promise<BigNumber>;
 
-    createAndStartRaffle(
+    createDummyRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    createDummyRaffleEth(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -451,7 +595,31 @@ export interface RafflePartyTest extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    testBuyTickets(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    testBuyTicketsEth(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    testClaimPrize(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
     testCreateRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    testFailInitializeSeed1(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    testFailInitializeSeed2(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<BigNumber>;
+
+    testInitializeSeed(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
@@ -459,7 +627,11 @@ export interface RafflePartyTest extends BaseContract {
   populateTransaction: {
     IS_TEST(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    createAndStartRaffle(
+    createDummyRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    createDummyRaffleEth(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -475,7 +647,31 @@ export interface RafflePartyTest extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    testBuyTickets(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    testBuyTicketsEth(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    testClaimPrize(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
     testCreateRaffle(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    testFailInitializeSeed1(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    testFailInitializeSeed2(
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<PopulatedTransaction>;
+
+    testInitializeSeed(
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
