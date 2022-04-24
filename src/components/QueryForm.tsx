@@ -5,20 +5,28 @@ import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
 
 interface QueryFormProps {
-  runQuery: (s: string) => any;
+  buyTicket: (s: number) => any;
+  buyTicketEth: (s: number) => any;
 }
 
 export default function QueryForm(props: QueryFormProps) {
   const [loading, setLoading] = useState(false);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(0);
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLElement>) => {
-    setTitle((e.target as HTMLInputElement).value);
+    setTitle(parseInt((e.target as HTMLInputElement).value));
   };
 
   const submitForm = async () => {
     setLoading(true);
-    props.runQuery(title);
+    props.buyTicket(title);
+    setLoading(false);
+    console.log("loading...");
+  };
+
+  const submitFormEth = async () => {
+    setLoading(true);
+    props.buyTicketEth(title);
     setLoading(false);
     console.log("loading...");
   };
@@ -36,16 +44,18 @@ export default function QueryForm(props: QueryFormProps) {
           <Form.Group controlId="title">
             {/* <Form.Label>Query</Form.Label> */}
             <Form.Control
-              as="textarea"
+              type="number"
               placeholder="Query"
               onChange={handleChangeTitle}
-              rows={1}
               required
             />
           </Form.Group>
           <br />
           <Button variant="primary" size="sm" onClick={submitForm}>
-            Submit
+            Buy with $TOKEN
+          </Button>
+          <Button variant="info" size="sm" onClick={submitFormEth}>
+            Buy with ETH
           </Button>
         </Form>
       )}

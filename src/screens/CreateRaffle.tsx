@@ -15,7 +15,7 @@ export default function Home() {
     ticketPrice: number,
     minTickets: number
   ) {
-    // Call contract
+    // TODO: contract
     return null;
   }
   return (
