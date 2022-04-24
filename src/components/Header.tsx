@@ -23,7 +23,7 @@ export default function Header(props: HeaderProps) {
   }
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
       <Container>
         <Navbar.Brand href="/">Raffle Party</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
